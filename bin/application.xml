@@ -1,0 +1,20 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"  
+            "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<bean id="accountsService" class="com.emrekoca.avalon.services.AccountsServiceMockImpl" />
+	<bean id="bookService" class="com.emrekoca.avalon.services.BookServiceMockImpl" />
+	<!-- Wiring via constructor -->
+	<bean id="purchasingService"
+		class="com.emrekoca.avalon.services.PurchasingServiceImpl">
+		<constructor-arg ref="bookService" />
+		<constructor-arg ref="accountsService" />
+	</bean>
+	<!-- Wiring via property -->
+	<!--
+	<bean id="purchasingService" class="com.emrekoca.avalon.services.PurchasingServiceImpl">
+		<property name="bookService" ref="bookService" />
+		<property name="accountService" ref="accountsService" />
+	</bean>
+	 -->
+</beans>
+
