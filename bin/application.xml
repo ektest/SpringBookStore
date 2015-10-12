@@ -8,6 +8,15 @@
 		class="com.emrekoca.avalon.services.PurchasingServiceImpl">
 		<constructor-arg ref="bookService" />
 		<constructor-arg ref="accountsService" />
+		<!-- 
+		If we have same type object more than one
+		then we need to use index to tell (variable name) position of arguments
+		"ref" refers to bean id not property name
+		<constructor-arg index="1" ref="bookService" />
+		<constructor-arg index="2" ref="bookService" />
+		<constructor-arg index="0" ref="accountsService" />
+		<constructor-arg index="3" ref="accountsService" />
+		 -->
 	</bean>
 	<!-- Wiring via property and as well as lazy-init and stateful-bean-->
 	<!--

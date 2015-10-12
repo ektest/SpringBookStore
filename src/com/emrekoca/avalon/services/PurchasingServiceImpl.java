@@ -11,9 +11,9 @@ public class PurchasingServiceImpl implements PurchasingService {
 	}
 
 	// Wiring via contructor
-	public PurchasingServiceImpl(AccountsService accountsService, BookService booksService) {
-		this.accounts = accountsService;
-		this.books = booksService;
+	public PurchasingServiceImpl(AccountsService aService, BookService bService) {
+		this.accounts = aService;
+		this.books = bService;
 	}
 
 	// Wiring via property
