@@ -9,12 +9,13 @@
 		<constructor-arg ref="bookService" />
 		<constructor-arg ref="accountsService" />
 	</bean>
-	<!-- Wiring via property -->
+	<!-- Wiring via property and as well as lazy-init and stateful-bean-->
 	<!--
-	<bean id="purchasingService" class="com.emrekoca.avalon.services.PurchasingServiceImpl">
+	<bean id="purchasingService" class="com.emrekoca.avalon.services.PurchasingServiceImpl"
+		lazy-init="true"
+		scope="prototype">
 		<property name="bookService" ref="bookService" />
 		<property name="accountService" ref="accountsService" />
 	</bean>
 	 -->
 </beans>
-
