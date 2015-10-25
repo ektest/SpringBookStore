@@ -1,5 +1,6 @@
 package com.emrekoca.avalon.services;
 
+import com.emrekoca.avalon.data.BookNotFoundException;
 import com.emrekoca.avalon.domain.Book;
 
 public class PurchasingServiceImpl implements PurchasingService {
@@ -25,7 +26,7 @@ public class PurchasingServiceImpl implements PurchasingService {
 		this.books = books;
 	}
 
-	public void buyBook(String isbn) {
+	public void buyBook(String isbn) throws BookNotFoundException {
 		// find the correct book
 		Book requiredBook = books.getBookByIsbn(isbn);
 

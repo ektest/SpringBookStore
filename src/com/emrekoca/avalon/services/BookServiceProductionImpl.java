@@ -3,6 +3,7 @@ package com.emrekoca.avalon.services;
 import java.util.List;
 
 import com.emrekoca.avalon.data.BookDao;
+import com.emrekoca.avalon.data.BookNotFoundException;
 import com.emrekoca.avalon.domain.Book;
 
 /**
@@ -28,7 +29,7 @@ public class BookServiceProductionImpl implements BookService {
 	}
 
 	@Override
-	public Book getBookByIsbn(String isbn) {
+	public Book getBookByIsbn(String isbn) throws BookNotFoundException {
 		return dao.findByIsbn(isbn);
 	}
 
