@@ -20,8 +20,9 @@ public class BookDaoCleanerJdbcImpl implements BookDao {
 	public BookDaoCleanerJdbcImpl(JdbcTemplate template)
 	{
 		this.jdbcTemplate = template;
-		
-		// TODO: improve this try block
+	}
+
+	private void createTables() {
 		try
 		{
 			jdbcTemplate.update(CREATE_TABLE_SQL);
