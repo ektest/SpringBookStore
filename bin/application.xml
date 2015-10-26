@@ -57,8 +57,12 @@
 		<property name="accountService" ref="accountsService" />
 	</bean>
 	 -->
-	 <bean id="bookService" class="com.emrekoca.avalon.services.BookServiceProductionImpl" >
+	 <bean id="bookServiceTarget" class="com.emrekoca.avalon.services.BookServiceProductionImpl" >
 	 	<constructor-arg ref="bookDao"/>
 	 </bean>
 	 <bean id="bookDaoOld" class="com.emrekoca.avalon.data.BookDaoHorridJdbcImpl"></bean>
+	 	<!-- Timing Bean -->
+	<bean id="bookService" class="com.emrekoca.avalon.services.BookServiceTimingProxy">
+		<property name="originalBookService" ref="bookServiceTarget"/>
+	</bean>
 </beans>
