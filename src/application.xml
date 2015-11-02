@@ -31,12 +31,13 @@
 	<bean id="bookDao" class="com.emrekoca.avalon.data.BookDaoCleanerJdbcImpl" init-method="createTables">
 	 	<constructor-arg ref="jdbcTemplate" />
 	</bean>
+	<bean id="bookDaoOld" class="com.emrekoca.avalon.data.BookDaoHorridJdbcImpl"></bean>
 	<bean id="accountsService" class="com.emrekoca.avalon.services.AccountsServiceMockImpl" />
 	<bean id="bookService2" class="com.emrekoca.avalon.services.BookServiceMockImpl" />
 	<!-- Wiring via constructor -->
 	<bean id="purchasingService"
 		class="com.emrekoca.avalon.services.PurchasingServiceImpl">
-		<constructor-arg ref="bookService" />
+		<constructor-arg ref="bookServiceTarget" />
 		<constructor-arg ref="accountsService" />
 		<!-- 
 		If we have same type object more than one
@@ -56,13 +57,31 @@
 		<property name="bookService" ref="bookService" />
 		<property name="accountService" ref="accountsService" />
 	</bean>
-	 -->
-	 <bean id="bookServiceTarget" class="com.emrekoca.avalon.services.BookServiceProductionImpl" >
+	-->
+	<!-- Using proxy desing pattern -->
+	<!-- Target -->
+	<bean id="bookServiceTarget" class="com.emrekoca.avalon.services.BookServiceProductionImpl" >
 	 	<constructor-arg ref="bookDao"/>
-	 </bean>
-	 <bean id="bookDaoOld" class="com.emrekoca.avalon.data.BookDaoHorridJdbcImpl"></bean>
-	 	<!-- Timing Bean -->
-	<bean id="bookService" class="com.emrekoca.avalon.services.BookServiceTimingProxy">
-		<property name="originalBookService" ref="bookServiceTarget"/>
+	</bean>
+	<!-- Timing Bean / Proxy -->
+	<!--
+	<bean id="bookServiceProxy" class="com.emrekoca.avalon.services.BookServiceTimingProxy">
+		<property name="originalBookService" ref="bookService"/>
+	</bean>
+	-->
+	
+	<!-- Using Spring AOP -->
+	<!-- Advice -->
+	<bean id="loggingAdvice" class="com.emrekoca.avalon.advice.PerformTimingAdvice"/>
+	<!-- Spring Generated Proxy -->
+	<bean id="bookService" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces" value="com.emrekoca.avalon.services.BookService"/>
+		<property name="interceptorNames">
+			<list>
+				<value>loggingAdvice</value>
+			</list>
+		</property>
+		<!-- target -->
+		<property name="target" ref="bookServiceTarget"/>
 	</bean>
 </beans>

@@ -11,6 +11,7 @@ public class Client {
 
 	public static void main(String[] args) {
 		appCon = new ClassPathXmlApplicationContext("application.xml");
+		//BookService bs = appCon.getBean("bookServiceProxy", BookService.class);
 		BookService bs = appCon.getBean("bookService", BookService.class);
 		//System.out.println(bs.getBookByIsbn("ISBN1"));
 		bs.registerNewBook(new Book("123", "Love and Sex", "Public", 0.00));
