@@ -41,16 +41,7 @@
 	</bean>
 	<!-- Using Spring AOP -->
 	<!-- Advice -->
-	<bean id="performanceTimingAdvice" class="com.emrekoca.avalon.advice.PerformTimingAdviceAspectJ"/>
-	<!-- Now weave the advice into classes defined by the 'pointcut' -->
-	<aop:config>
-		<aop:pointcut expression="execution ( java.util.List com.emrekoca.avalon.services.*.* (..) )" 
-			id="allServiceMethodsThatReturnList"/>
-		<aop:aspect ref="performanceTimingAdvice">
-			<aop:around method="performTimingMeasurement"
-				pointcut-ref="allServiceMethodsThatReturnList"/>
-		<aop:before method="beforeAdviceTesting"
-				pointcut="execution ( * com.emrekoca.avalon.services.*.* (..) )"/>
-		</aop:aspect>
-	</aop:config>
+	<bean id="performanceTimingAdvice" class="com.emrekoca.avalon.advice.PerformTimingAdvice"/>
+	<!-- Tells spring search for AOP annotations -->
+	<aop:aspectj-autoproxy/>
 </beans>
