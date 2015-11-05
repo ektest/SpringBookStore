@@ -41,7 +41,7 @@
 	</bean>
 	<!-- Using Spring AOP -->
 	<!-- Advice -->
-	<bean id="performanceTimingAdvice" class="com.emrekoca.avalon.advice.PerformTimingAdvice"/>
+	<bean id="performanceTimingAdvice" class="com.emrekoca.avalon.advice.PerformTimingAdviceAspectJ"/>
 	<!-- Now weave the advice into classes defined by the 'pointcut' -->
 	<aop:config>
 		<aop:pointcut expression="execution ( java.util.List com.emrekoca.avalon.services.*.* (..) )" 
