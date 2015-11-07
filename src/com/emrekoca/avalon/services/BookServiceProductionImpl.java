@@ -2,6 +2,8 @@ package com.emrekoca.avalon.services;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.emrekoca.avalon.data.BookDao;
 import com.emrekoca.avalon.data.BookNotFoundException;
 import com.emrekoca.avalon.domain.Book;
@@ -9,6 +11,7 @@ import com.emrekoca.avalon.domain.Book;
 /**
  * This is the production implementation - it will be calling a "real" database.
  */
+@Transactional
 public class BookServiceProductionImpl implements BookService {
 	
 	private BookDao dao;

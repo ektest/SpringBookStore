@@ -1,8 +1,11 @@
 package com.emrekoca.avalon.services;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.emrekoca.avalon.data.BookNotFoundException;
 import com.emrekoca.avalon.domain.Book;
 
+@Transactional
 public class PurchasingServiceImpl implements PurchasingService {
 	private AccountsService accounts;
 	private BookService books;
@@ -26,6 +29,7 @@ public class PurchasingServiceImpl implements PurchasingService {
 		this.books = books;
 	}
 
+	// @Transactional -> only this method is Transactional
 	public void buyBook(String isbn) throws BookNotFoundException {
 		// find the correct book
 		Book requiredBook = books.getBookByIsbn(isbn);

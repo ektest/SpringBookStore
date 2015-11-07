@@ -49,7 +49,7 @@
 		<aop:aspect ref="performanceTimingAdvice">
 			<aop:around method="performTimingMeasurement"
 				pointcut-ref="allServiceMethodsThatReturnList"/>
-		<aop:before method="beforeAdviceTesting"
+			<aop:before method="beforeAdviceTesting"
 				pointcut="execution ( * com.emrekoca.avalon.services.*.* (..) )"/>
 		</aop:aspect>
 	</aop:config>

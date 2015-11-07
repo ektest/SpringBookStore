@@ -2,9 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xmlns:aop="http://www.springframework.org/schema/aop"
+            xmlns:tx="http://www.springframework.org/schema/tx"
             xsi:schemaLocation="
                 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-                http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+                http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
@@ -21,6 +23,10 @@
 		<property name="timeBetweenEvictionRunsMillis" value="30000" />
 		<property name="numTestsPerEvictionRun" value="3" />
 		<property name="minEvictableIdleTimeMillis" value="60000" />
+	</bean>
+	<!-- Transaction Manager -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 	 	<constructor-arg ref="dataSource"/>
@@ -44,4 +50,11 @@
 	<bean id="performanceTimingAdvice" class="com.emrekoca.avalon.advice.PerformTimingAdvice"/>
 	<!-- Tells spring search for AOP annotations -->
 	<aop:aspectj-autoproxy/>
+	<!-- Transaction Configuration -->
+	<!-- enable the configuration of transactional behavior based on annotations -->
+	<tx:annotation-driven />
+	<!-- if we use different name rather than default name ('transactionManager') then we should use below -->
+	<!-- 
+	<tx:annotation-driven transaction-manager="{transactionManagerCustomName}"/>
+	 -->
 </beans>
