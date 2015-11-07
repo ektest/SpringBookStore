@@ -52,5 +52,22 @@
 	<aop:aspectj-autoproxy/>
 	<!-- Transaction Configuration -->
 	<!-- enable the configuration of transactional behavior based on annotations -->
-	<tx:annotation-driven />
+	<!--  <tx:annotation-driven /> -->
+	<!-- if we use different name rather than default name ('transactionManager') then we should use below -->
+	<!-- 
+	<tx:annotation-driven transaction-manager="{transactionManagerCustomName}"/>
+	 -->
+	 <!-- Second way: No annotation -->
+	 <tx:advice id="allMethodsToBeTransactional">
+	 <tx:attributes>
+	 	<!-- All methods are Transactional -->
+	 	<tx:method name="*"/>
+	 	<!-- Single method is Transactional -->
+	 	<!-- <tx:method name="registerNewBook"/> -->
+	 </tx:attributes>
+	 </tx:advice>
+	 <aop:config>
+	 	<aop:advisor advice-ref="allMethodsToBeTransactional"
+	 		pointcut="execution( * com.emrekoca.avalon.services..*.*(..) )"/>
+	 </aop:config>
 </beans>

@@ -53,8 +53,4 @@
 	<!-- Transaction Configuration -->
 	<!-- enable the configuration of transactional behavior based on annotations -->
 	<tx:annotation-driven />
-	<!-- if we use different name rather than default name ('transactionManager') then we should use below -->
-	<!-- 
-	<tx:annotation-driven transaction-manager="{transactionManagerCustomName}"/>
-	 -->
 </beans>
