@@ -34,6 +34,9 @@ public class PurchasingServiceImpl implements PurchasingService {
 		// find the correct book
 		Book requiredBook = books.getBookByIsbn(isbn);
 
+		// delete book from stock
+		books.deleteFromStock(requiredBook);
+
 		// now raise the invoice
 		accounts.raiseInvoice(requiredBook);
 	}

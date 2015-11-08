@@ -9,10 +9,10 @@ import org.aspectj.lang.annotation.Pointcut;
 
 @Aspect
 public class PerformTimingAdvice {
-	@Pointcut("execution ( java.util.List com.emrekoca.avalon.services.*.* (..) )")
-	public void allServiceMethodThatReturnList(){}
+	@Pointcut("execution ( * com.emrekoca.avalon.services.*.* (..) )")
+	public void allServiceMethodThatReturnAnything(){}
 
-	@Around("allServiceMethodThatReturnList()")
+	@Around("allServiceMethodThatReturnAnything()")
 	public Object performTimingMeasurement(ProceedingJoinPoint method) throws Throwable {
 		long startTime = System.nanoTime();
 		try {
@@ -25,7 +25,7 @@ public class PerformTimingAdvice {
 		}
 	}
 
-	@Before(value = "execution ( * com.emrekoca.avalon.services.*.* (..) )")
+	@Before(value = "execution ( java.util.List com.emrekoca.avalon.services.*.* (..) )")
 	public void beforeAdviceTesting(JoinPoint jp) {
 		// BookService b = (BookService)jp.getTarget();
 		// System.out.println(b.getEntireCatalogue());

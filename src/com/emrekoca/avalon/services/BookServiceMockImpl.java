@@ -45,4 +45,9 @@ public class BookServiceMockImpl implements BookService
 	{		
 		return null;
 	}
+
+	@Override
+	public void deleteFromStock(Book oldBook) {
+		testBooks.remove(oldBook.getIsbn());
+	}
 }

@@ -48,4 +48,9 @@ public class BookServiceProductionImpl implements BookService {
 		dao.create(newBook);
 	}
 
+	@Override
+	public void deleteFromStock(Book oldBook) {
+		dao.delete(oldBook);
+	}
+
 }
