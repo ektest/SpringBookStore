@@ -62,6 +62,9 @@
 	 <tx:attributes>
 	 	<!-- All methods are Transactional -->
 	 	<tx:method name="*"/>
+	 	<!-- Propagation in the tx: namespace
+	 	<tx:method name="*"
+	 		propagation="SUPPORTS"/> -->
 	 	<!-- Single method is Transactional -->
 	 	<!-- <tx:method name="registerNewBook"/> -->
 	 </tx:attributes>

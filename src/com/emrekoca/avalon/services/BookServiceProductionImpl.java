@@ -2,6 +2,7 @@ package com.emrekoca.avalon.services;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.emrekoca.avalon.data.BookDao;
@@ -11,7 +12,7 @@ import com.emrekoca.avalon.domain.Book;
 /**
  * This is the production implementation - it will be calling a "real" database.
  */
-@Transactional
+@Transactional(propagation=Propagation.REQUIRED)
 public class BookServiceProductionImpl implements BookService {
 	
 	private BookDao dao;
@@ -27,6 +28,7 @@ public class BookServiceProductionImpl implements BookService {
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.SUPPORTS)
 	public List<Book> getAllRecommendedBooks(String userId) {
 		throw new UnsupportedOperationException();
 	}

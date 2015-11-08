@@ -8,9 +8,12 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.emrekoca.avalon.domain.Book;
 
+@Transactional(propagation=Propagation.MANDATORY)
 public class BookDaoCleanerJdbcImpl implements BookDao {
 
 	private JdbcTemplate jdbcTemplate;

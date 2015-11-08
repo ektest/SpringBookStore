@@ -1,0 +1,69 @@
+* Required
+Create a transaction if transaction already created 
+then child uses parent's transaction.
+Default one
+
+* Requires_new
+Always creates another transaction (brand new one)
+even-though there is already parent transaction.
+This is not child transaction! This is brand new transaction!
+
+This is dangerous why? See below:
+First transaction (called first) started
+we made same changes called as A
+we required new transaction (called new) and started
+new transaction comitted changes called as B
+then we want to roolback changes for A and B
+before committing transaction for first transation
+There is no chance to roll back for new transaction
+because it is already commited so changes B can't reverted!
+we can roll back changes A!
+
+ex: Banks may uses this
+
+* Supports
+Don't bother creating a new transaction but
+we don't mind if there is already one in existence
+
+ex: method work in memory
+
+One of the mostly used one!
+
+* Not_supported
+If there is no transaction running then does not create new one.
+If there is a transaction already in the parent method,
+it will suspend the transaction and once child method
+finish his task then it will resume transaction
+
+In other word, we definitely do not want a
+transaction open for this method
+
+ex: creating or dropping  tables, we can use this
+
+* Mondatary
+Throws exception, if there is no transaction already
+This does not create new transaction, it uses parent method transaction
+There must be one before this method being called
+
+ex: We can use this in DAO 
+because service methods should create
+transaction we should not create it in DAO!
+
+* Never
+Never will throw an exception if the method is called 
+when transaction is open.
+
+In other word, never creates transaction for this methods!
+No suspending existence transaction! Throw exception!
+
+* Nested
+This is added by Spring. This will partially
+roll back up to savepoint! It does not create
+new transaction! Nested transaction will be rollback
+but it will not roll back parent transaction!
+
+If the parent transaction rollback then nested transaction
+will be rollback too!
+
+This will be working on only JDBC! This will no be supporting
+on Hybernate/JPA!
