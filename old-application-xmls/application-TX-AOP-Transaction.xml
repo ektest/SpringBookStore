@@ -64,7 +64,10 @@
 	 	<tx:method name="*"/>
 	 	<!-- Propagation in the tx: namespace
 	 	<tx:method name="*"
-	 		propagation="SUPPORTS"/> -->
+	 		propagation="SUPPORTS"
+	 		read-only="true"
+	 		timeout="10"/> 
+	 	-->
 	 	<!-- Single method is Transactional -->
 	 	<!-- <tx:method name="registerNewBook"/> -->
 	 	<!-- rollback for transaction -->
