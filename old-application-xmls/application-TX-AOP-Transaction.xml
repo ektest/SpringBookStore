@@ -67,6 +67,11 @@
 	 		propagation="SUPPORTS"/> -->
 	 	<!-- Single method is Transactional -->
 	 	<!-- <tx:method name="registerNewBook"/> -->
+	 	<!-- rollback for transaction -->
+	 	<!-- 
+	 	<tx:method name="buyBook" 
+	 		rollback-for="CustomerCreditExcededException"/>
+	 	-->
 	 </tx:attributes>
 	 </tx:advice>
 	 <aop:config>
