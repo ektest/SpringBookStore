@@ -5,6 +5,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.emrekoca.avalon.data.BookNotFoundException;
 import com.emrekoca.avalon.domain.Book;
 import com.emrekoca.avalon.services.BookService;
+import com.emrekoca.avalon.services.CustomerCreditExceedException;
 import com.emrekoca.avalon.services.PurchasingService;
 
 public class Client {
@@ -15,14 +16,16 @@ public class Client {
 		try {
 			PurchasingService ps = appCon.getBean(PurchasingService.class);
 			BookService bs = appCon.getBean("bookService", BookService.class);
-			//begin
+			// begin
 			bs.registerNewBook(new Book("12345", "Test", "Test", 10));
-			//commit
-			//begin
+			// commit
+			// begin
 			ps.buyBook("12345");
-			//commit
+			// commit
 		} catch (BookNotFoundException e) {
 			System.out.println("Book not found!");
+		} catch (CustomerCreditExceedException e) {
+			System.out.println("You need more credits!");
 		} finally {
 			appCon.close();
 		}

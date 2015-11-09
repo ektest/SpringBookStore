@@ -4,5 +4,5 @@ import com.emrekoca.avalon.domain.Book;
 
 public interface AccountsService 
 {
-	public void raiseInvoice(Book requiredBook);
+	public void raiseInvoice(Book requiredBook) throws CustomerCreditExceedException;
 }

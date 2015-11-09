@@ -12,7 +12,7 @@ import com.emrekoca.avalon.domain.Book;
 /**
  * This is the production implementation - it will be calling a "real" database.
  */
-@Transactional(propagation=Propagation.REQUIRED)
+@Transactional
 public class BookServiceProductionImpl implements BookService {
 	
 	private BookDao dao;
