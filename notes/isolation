@@ -1,0 +1,34 @@
+* DEFAULT
+Use the default isolation level of the 
+underlying datastore.
+
+* SERIALIZABLE
+A constant indicating that dirty reads, 
+non-repeatable reads and phantom reads are 
+prevented.
+
+* REPEATABLE_READ
+A constant indicating that dirty reads and 
+non-repeatable reads are prevented; 
+phantom reads can occur.
+
+* READ_COMMITTED
+A constant indicating that dirty reads are 
+prevented; non-repeatable reads and 
+phantom reads can occur.
+
+* READ_UNCOMMITTED
+A constant indicating that dirty reads, 
+non-repeatable reads and phantom reads 
+can occur.
+
+See chapter: 20 in Spring framework
+http://docs.spring.io/spring/docs/4.0.x/javadoc-api/org/springframework/transaction/annotation/Isolation.html#DEFAULT
+http://stackoverflow.com/questions/8490852/spring-transactional-isolation-propagation
+
+P.S.: 
+* non-repeatable reads like updates.
+* phantom reads like inserts.
+* dirty reads like updates, inserts statements. 
+They will effect database even-though
+it is not committed yet!
