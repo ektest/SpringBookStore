@@ -22,6 +22,9 @@ A constant indicating that dirty reads,
 non-repeatable reads and phantom reads 
 can occur.
 
+Above is ordered by performance 
+(lower has better performance than above ones)
+
 See chapter: 20 in Spring framework
 http://docs.spring.io/spring/docs/4.0.x/javadoc-api/org/springframework/transaction/annotation/Isolation.html#DEFAULT
 http://stackoverflow.com/questions/8490852/spring-transactional-isolation-propagation
@@ -32,3 +35,41 @@ P.S.:
 * dirty reads like updates, inserts statements. 
 They will effect database even-though
 it is not committed yet!
+
+Dirty read: The meaning of this term is as 
+bad as it sounds. You're permitted to 
+read uncommitted, or dirty , data. 
+You can achieve this effect by just 
+opening an OS file that someone else is 
+writing and reading whatever data happens to 
+be there. Data integrity is compromised, 
+foreign keys are violated, and unique 
+constraints are ignored.
+
+Nonrepeatable read: This simply means that 
+if you read a row at time T1 and try to 
+reread that row at time T2, the row may have 
+changed. It may have disappeared, it may have 
+been updated, and so on.
+
+Phantom read: This means that if you execute 
+a query at time T1 and re-execute it at time T2, 
+additional rows may have been added to the database, 
+which may affect your results. This differs from 
+a nonrepeatable read in that with a phantom 
+read, data you already read hasn't been changed, 
+but instead, more data satisfies your query 
+criteria than before. 
+
+Changes isolation level in MYSQL:
+set global transaction isolation level SERIALIZABLE
+(remember to restart session)
+
+In Oracle DB:
+set isolation serializable;
+
+In IBM DB2:
+db2 terminate
+db2 change isolation to ur (or cs, nc, rr, rs)
+db2 connect to sample
+https://www-01.ibm.com/support/knowledgecenter/SSEPGG_9.5.0/com.ibm.db2.luw.admin.cmd.doc/doc/r0001946.html
