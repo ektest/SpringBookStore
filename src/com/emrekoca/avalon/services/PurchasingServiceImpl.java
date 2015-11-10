@@ -1,5 +1,6 @@
 package com.emrekoca.avalon.services;
 
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
@@ -32,7 +33,7 @@ public class PurchasingServiceImpl implements PurchasingService {
 	}
 
 	@Transactional(rollbackFor={CustomerCreditExceedException.class, BookNotFoundException.class},
-			timeout=10)
+			timeout=10, isolation=Isolation.SERIALIZABLE)
 	public void buyBook(String isbn) throws BookNotFoundException, CustomerCreditExceedException {
 		// find the correct book
 		Book requiredBook = books.getBookByIsbn(isbn);
