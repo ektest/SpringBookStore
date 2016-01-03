@@ -1,11 +1,29 @@
 package com.emrekoca.avalon.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Book 
 {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
+	public int getId() {
+		return id;
+	}
+
 	private String isbn;
 	private String title;
 	private String author;
 	private double price;
+
+	// default constructor we need for Hybirnate
+	public Book(){
+		
+	}
 
 	public Book(String isbn, String title, String author, double price) 
 	{

@@ -18,27 +18,8 @@
 	</bean>
 	<!-- Transaction Manager -->
 	<bean id="transactionManager" 
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager" 
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager" 
 		autowire="byName">
-	</bean>
-	<!-- Hibernate configuration -->
-	<bean id="hibernateTemplate" 
-		class="org.springframework.orm.hibernate4.HibernateTemplate"
-		autowire="byType"/>
-	<bean id="sessionFactory" 
-		class= "org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"/>
-		<property name="packagesToScan">
-			<list>
-				<value>com.emrekoca.avalon.domain</value>
-			</list>
-		</property>
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-			</props>
-		</property>
 	</bean>
 	<bean id="jdbcTemplate" 
 		class="org.springframework.jdbc.core.JdbcTemplate" 

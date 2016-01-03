@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.emrekoca.avalon.domain.Book;
 
 @Transactional(propagation=Propagation.MANDATORY)
-@Repository
+//@Repository
 public class BookDaoCleanerJdbcImpl implements BookDao {
 
 	// Spring will insert JdbcTemplate using reflection
