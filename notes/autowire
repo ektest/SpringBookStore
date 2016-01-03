@@ -1,0 +1,54 @@
+* autowire="byName" or "byType" *
+
+Before:
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+</bean>
+
+byName: name of bean must be exist
+After:
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" 
+		autowire="byName"></bean>
+
+byType: that type of bean must be exist
+After:
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" 
+		autowire="byType"></bean>
+
+* autowire="constructor" *
+
+Before:
+<bean id="bookService" class="com.emrekoca.avalon.services.BookServiceProductionImpl" >
+	 	<constructor-arg ref="bookDao"/>
+</bean>
+
+After:
+<bean id="bookService" class="com.emrekoca.avalon.services.BookServiceProductionImpl"
+		autowire="constructor" >
+</bean>
+
+* @Component() or @Component("bookService") *
+Tells spring create instance of this class and 
+insert to spring container so we don't have to declare 
+the bean property in XML file
+
+* @PostConstruct *
+Run this method after instance of that class is created 
+so it does same thing with "init-method":
+<bean id="bookDao" 
+class="com.emrekoca.avalon.data.BookDaoCleanerJdbcImpl" 
+init-method="createTables" />
+
+* @Service or @Service("bookService") *
+@Service is same as @Component. Service classes 
+should use this annottaion per Spring documentation.
+ 
+ * @Repository *
+@Repository is almost same as @Component. There is small 
+differences than @Component which is for JPA and Hybirnate.
+Good for DAO classes. 
+
+* CDI annotations *
+These are JAVA EE standards:
+@Named like @Service
+@Inject like @Autowired
