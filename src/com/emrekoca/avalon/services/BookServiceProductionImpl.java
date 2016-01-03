@@ -2,6 +2,8 @@ package com.emrekoca.avalon.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,14 +15,11 @@ import com.emrekoca.avalon.domain.Book;
  * This is the production implementation - it will be calling a "real" database.
  */
 @Transactional
+@Service("bookService") 
 public class BookServiceProductionImpl implements BookService {
-	
+
+	@Autowired
 	private BookDao dao;
-	
-	public BookServiceProductionImpl(BookDao dao)
-	{
-		this.dao = dao;
-	}
 	
 	@Override
 	public List<Book> getAllBooksByAuthor(String author) {
