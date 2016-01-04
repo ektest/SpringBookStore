@@ -1,3 +1,5 @@
+* Hibernate *
+
 * Hibernate needs empty constructor (default constructor) 
 must be exists in domain classes.
 
@@ -7,3 +9,12 @@ Primary key. There must be id in the entity.
 *	@GeneratedValue(strategy=GenerationType.AUTO)
 Auto generated primary key and strategy=GenerationType.
 AUTO works for any database because some db have sequence or identity.
+
+* JPA *
+
+JAVA standard version of Hibernate. Very similar to the Hibernate.
+
+@PersistenceContext is like JDBC/Hibernate template
+private EntityManager em;
+
+META-INF and persistence.xml must be there.

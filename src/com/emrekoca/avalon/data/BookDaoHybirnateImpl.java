@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.emrekoca.avalon.domain.Book;
 
-@Repository
+//@Repository
 public class BookDaoHybirnateImpl implements BookDao {
 
 	@Autowired

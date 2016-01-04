@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.emrekoca.avalon.domain.Book;
 import com.emrekoca.avalon.services.BookService;
 
-public class ClientHibernate {
+public class Client3 {
 	private static ClassPathXmlApplicationContext appCon;
 
 	public static void main(String[] args) {
