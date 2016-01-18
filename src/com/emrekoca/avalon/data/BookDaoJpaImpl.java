@@ -3,6 +3,7 @@ package com.emrekoca.avalon.data;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
@@ -23,9 +24,13 @@ public class BookDaoJpaImpl implements BookDao {
 
 	@Override
 	public Book findByIsbn(String isbn) throws BookNotFoundException {
-		return (Book) em.createQuery("select book from Book as book where book.isbn:=isbn")
-				.setParameter("isbn", isbn)
-				.getSingleResult();
+		try {
+			return (Book) em.createQuery("select book from Book as book where book.isbn=:isbn")
+					.setParameter("isbn", isbn)
+					.getSingleResult();
+		} catch (NoResultException ex) {
+			throw new BookNotFoundException();
+		}
 	}
 
 	@Override
@@ -42,6 +47,8 @@ public class BookDaoJpaImpl implements BookDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Book> findBooksByAuthor(String author) {
-		return em.createQuery("select book from Book as book where book.author:=author").setParameter("author", author).getResultList();
+		return em.createQuery("select book from Book as book where book.author=:author")
+				.setParameter("author", author)
+				.getResultList();
 	}
 }
