@@ -35,6 +35,16 @@
 	<!-- Transaction Configuration -->
 	<!-- enable the configuration of transactional behavior based on annotations -->
 	<tx:annotation-driven />
-	<!--  use annotaion autowired -->
+	<!--  use annotation autowired -->
 	<context:component-scan base-package="com.emrekoca" />
+	<!-- Testing the SpEL without annotation so if you use annotation, comment this out! -->
+	<!--
+	<bean id="simpleBeanA" class="com.emrekoca.speltesting.SimpleBeanA">
+		<property name="simpleValue" value="SOME IMPORTANT BUSINESS. XML version"/>
+	</bean>
+
+	<bean id="simpleBeanB" class="com.emrekoca.speltesting.SimpleBeanB">
+		<property name="secondValue" value="#{simpleBeanA.simpleValue}"/>
+	</bean>
+	-->
 </beans>
